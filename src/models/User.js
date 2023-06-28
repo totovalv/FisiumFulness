@@ -13,20 +13,28 @@ const User = new Schema({
     type: String,
     unique: true
   },
+
+firstname: {
+    type: String,
+  },
+  lastname: {
+    type: String,
+  },
+  status: {
+    type: Boolean,
+    default: true,
+  },
   // password: {
   //   type: String,
   // },
-  // username: {
-  //   type: String,
-  // },
-  // available: {
-  //   type: Boolean,
-  //   default: true,
-  // },
-  // role:{
-  //   type:String,
-  //   default:"user"
-  // },
+  username: {
+    type: String,
+  },
+ 
+  role:{
+    type:String,
+    default:"user"
+  },
   // token: {
   //   type: String,
   //   default: ""
@@ -35,11 +43,11 @@ const User = new Schema({
   //   type: Boolean,
   //   default: false, 
   // },
-  // phone:{
-  //   type:String
-  // },
+  phone:{
+    type:String
+  },
 
-});
+},{ timestamps: { createdAt: 'createdDate', updatedAt: 'updatedDate' } });
 
 
 
