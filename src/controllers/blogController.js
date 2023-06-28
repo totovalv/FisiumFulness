@@ -13,7 +13,7 @@ exports.getBlog = async (req, res) => {
   const { title } = req.query;
   try {
     const blog = await Blog.find({});
-    if (email) {
+    if (title) {
       const blogFilter = blog.filter((blog) =>
         blog.title.toLowerCase().includes(title.toLowerCase())
       );
