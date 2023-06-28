@@ -3,6 +3,10 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const userRouter = require("./routes/userRoutes");
 const blogRouter = require("./routes/blogRoutes");
+const typeRouter = require("./routes/typeRoutes");
+const commentRouter = require("./routes/commentRoutes");
+
+
 
 
 const app = express();
@@ -18,5 +22,9 @@ app.use(function (req, res, next) {
 });
 app.use("/users", userRouter);
 app.use("/blogs", blogRouter);
+app.use("/types", typeRouter);
+app.use("/comments", commentRouter);
+
+
 require("./db");
 module.exports = app;

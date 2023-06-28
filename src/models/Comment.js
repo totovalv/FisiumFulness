@@ -2,41 +2,41 @@ const mongoose = require("mongoose");
 const { Schema, model } = mongoose;
 const ObjectId = mongoose.Types.ObjectId;
 
-const Blog = new Schema({
+const Comment = new Schema({
   _id: {
     type: String,
     default: function () {
       return new ObjectId().toString();
     },
   },
-  text:{
+  user_id:{
     type:String,
     required:true
   },
-  title:{
+  content:{
     type:String,
     required:true
   },
-  image:{
+  user_email:{
     type:String,
     required:true
   },
- user_id:{
-  type:String,
-  required:true
- },
- status:{
-  type:Boolean,
-default:true
- },
- type_id:{
-  type:String,
-  required:true
- }
+  user_name:{
+    type:String,
+    required:true
+  },
+  blog_id:{
+    type:String,
+    required:true
+  },
+  status:{
+    type:Boolean,
+    default:true
+  }
 },{ timestamps: { createdAt: 'createdDate', updatedAt: 'updatedDate' } });
 
 
 
-module.exports = model("Blog", Blog);
+module.exports = model("Comment", Comment);
 
 
