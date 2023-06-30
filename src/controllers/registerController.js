@@ -10,7 +10,7 @@ const E_USER = process.env.MAILUSER;
 const E_PASSWORD = process.env.MAILPASSWORD;
 
 exports.register = async (req, res) => {
-  const { username, password, email, lastname, firstname ,phone} = req.body;
+  const { username, password, email} = req.body;
   res.header("Access-Control-Allow-Origin", "*");
   await check("username").notEmpty().withMessage("Is required").run(req);
   await check("email").isEmail().withMessage("example@example.com").run(req);
@@ -36,10 +36,7 @@ exports.register = async (req, res) => {
   const user = new User({
     username,
     password,
-    lastname,
-    firstname,
     email,
-    phone,
     token: generarId,
   });
 

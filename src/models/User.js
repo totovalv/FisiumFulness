@@ -18,15 +18,11 @@ const User = new Schema({
 
 firstname: {
     type: String,
-    default: "",
-    required:true
-
+    default: " ",
   },
   lastname: {
     type: String,
-    default: "",
-    required:true
-
+    default: " ",
   },
   status: {
     type: Boolean,
@@ -57,7 +53,6 @@ firstname: {
   phone:{
     type:String,
     default: ""
-
   },
 
 },{ timestamps: { createdAt: 'createdDate', updatedAt: 'updatedDate' } });
