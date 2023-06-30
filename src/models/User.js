@@ -11,40 +11,53 @@ const User = new Schema({
   },
   email: {
     type: String,
-    unique: true
+    unique: true,
+    required:true
+
   },
 
 firstname: {
     type: String,
+    default: "",
+    required:true
+
   },
   lastname: {
     type: String,
+    default: "",
+    required:true
+
   },
   status: {
     type: Boolean,
     default: true,
   },
-  // password: {
-  //   type: String,
-  // },
+  password: {
+    type: String,
+    required:true
+  },
   username: {
     type: String,
+    unique: true,
+    required:true
   },
  
   role:{
     type:String,
     default:"user"
   },
-  // token: {
-  //   type: String,
-  //   default: ""
-  // },
-  // confirm: {
-  //   type: Boolean,
-  //   default: false, 
-  // },
+  token: {
+    type: String,
+    default: ""
+  },
+  confirm: {
+    type: Boolean,
+    default: false, 
+  },
   phone:{
-    type:String
+    type:String,
+    default: ""
+
   },
 
 },{ timestamps: { createdAt: 'createdDate', updatedAt: 'updatedDate' } });

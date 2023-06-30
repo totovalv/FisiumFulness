@@ -5,6 +5,8 @@ const userRouter = require("./routes/userRoutes");
 const blogRouter = require("./routes/blogRoutes");
 const typeRouter = require("./routes/typeRoutes");
 const commentRouter = require("./routes/commentRoutes");
+const registerRouter = require("./routes/registerRoutes");
+
 
 
 
@@ -24,7 +26,7 @@ app.use("/users", userRouter);
 app.use("/blogs", blogRouter);
 app.use("/types", typeRouter);
 app.use("/comments", commentRouter);
-
+app.use("/register", registerRouter);
 
 require("./db");
 module.exports = app;
