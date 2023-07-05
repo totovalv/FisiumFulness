@@ -30,7 +30,8 @@ exports.getAllBlog = async (req, res) => {
   }
 };
 exports.updateBlog = async (req, res) => {
-  const { id, text, title, image, user_id, status, type_id } = req.body;
+  const id = req.params.id;
+  const { text, title, image, user_id, status, type_id } = req.body;
   const newData = { text, title, image, user_id, status, type_id };
   try {
     // * id =? _id LLega "id" por body o llega _id
@@ -41,8 +42,8 @@ exports.updateBlog = async (req, res) => {
   }
 };
 exports.deleteBlog = async (req, res) => {
+  const { id } = req.params;
   try {
-    const { id } = req.params;
     await Blog.findOneAndRemove({ _id: id });
 
     return res
