@@ -1,43 +1,41 @@
-const Type = require("../models/Type");
+const Type = require('../models/Type');
 
 exports.newType = async (req, res) => {
-  const type = new Type(req.body);
+  const { name } = req.body;
   try {
+    const type = new Type({ name });
     await type.save();
-    res.status(200).send(type);
+    return res.status(200).json({ type });
   } catch (error) {
-    res.status(400).send(error.message);
+    return res.status(400).json({ message: error.message });
   }
 };
+
 exports.getTypes = async (req, res) => {
   const { name } = req.query;
   try {
-    const type = await Type.find({});
-    if (name) {
-      const typeFilter = type.filter((type) =>
+    const types = await Type.find({});
+
+    if (!name) return res.status(200).json({ types });
+
+    const typeFilter = types.filter((type) =>
       type.name.toLowerCase().includes(name.toLowerCase())
-      );
-      if (typeFilter.length) {
-        return res.status(200).send(typeFilter);
-      } else {
-        res.status(404).send(error.message);
-      }
-    } else {
-      res.status(200).send(type);
-    }
+    );
+    if (!typeFilter.length) throw new Error('no type found with that name');
+
+    return res.status(200).json({ typeFilter });
   } catch (error) {
-    res.status(404).send(error.message);
+    return res.status(404).json({ message: error.message });
   }
 };
 exports.getTypeById = async (req, res) => {
-  const type = await Type.findById(req.params.id);
-
+  const { id } = req.params;
   try {
-    if (!type) {
-      throw new Error("type not found");
-    }
-    res.status(200).json(type);
+    const type = await Type.findById(id);
+    if (!type) throw new Error('type not found');
+
+    return res.status(200).json({ type });
   } catch (error) {
-    res.status(400).send(error.message);
+    return res.status(400).json({ message: error.message });
   }
 };
