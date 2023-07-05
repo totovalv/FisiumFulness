@@ -1,6 +1,6 @@
 const Blog = require("../models/Blog");
 
-exports.newBlog = async (req, res) => {
+exports.createBlog = async (req, res) => {
   const blog = new Blog(req.body);
   try {
     await blog.save();
@@ -9,7 +9,7 @@ exports.newBlog = async (req, res) => {
     res.status(400).send(error.message);
   }
 };
-exports.getBlog = async (req, res) => {
+exports.getAllBlog = async (req, res) => {
   const { title } = req.query;
   try {
     const blog = await Blog.find({});
