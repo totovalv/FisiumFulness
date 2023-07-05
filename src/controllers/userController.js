@@ -1,6 +1,6 @@
 const User = require('../models/User');
 
-exports.newUser = async (req, res) => {
+exports.createUser = async (req, res) => {
   const {
     email,
     firstname,
