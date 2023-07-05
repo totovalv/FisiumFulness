@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const morgan = require('morgan');
+
 const bodyParser = require('body-parser');
 const userRouter = require('./routes/userRoutes');
 const blogRouter = require('./routes/blogRoutes');
@@ -10,13 +12,14 @@ const registerRouter = require('./routes/registerRoutes');
 const app = express();
 app.use(
   cors({
-    origin: '*',
+    origin: 'http://localhost:5173',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204,
   })
 );
 app.use(bodyParser.json());
+app.use(morgan('dev'));
 
 app.use('/users', userRouter);
 app.use('/blogs', blogRouter);
