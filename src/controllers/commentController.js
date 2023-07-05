@@ -1,31 +1,28 @@
-const Comment = require("../models/Comment");
+const Comment = require('../models/Comment');
 
-exports.newComment = async (req, res) => {
-  const comment = new Comment(req.body);
+exports.createComment = async (req, res) => {
+  const { user_id, content, user_email, user_name, blog_id, status } = req.body;
+  const newData = { user_id, content, user_email, user_name, blog_id, status };
   try {
+    const comment = new Comment(newData);
     await comment.save();
-    res.status(200).send(comment);
+    return res.status(200).json({ comment });
   } catch (error) {
-    res.status(400).send(error.message);
+    return res.status(400).json({ message: error.message });
   }
 };
 exports.getComment = async (req, res) => {
   const { blog_id } = req.query;
   try {
-    const comment = await Comment.find({});
-    if (blog_id) {
-      const commentFilter = comment.filter((comment) =>
-      comment.blog_id ===blog_id
-      );
-      if (commentFilter.length) {
-        return res.status(200).send(commentFilter);
-      } else {
-        res.status(404).send("hola");
-      }
-    } else {
-      res.status(200).send(comment);
-    }
+    const comments = await Comment.find({});
+
+    if (!blog_id) return res.status(200).json({ comments });
+    const commentFilter = comments.filter((comment) => comment.blog_id === blog_id);
+    if (!commentFilter.length)
+      throw new Error('The comment with that ID was not found');
+
+    return res.status(200).json({ commentFilter });
   } catch (error) {
-    res.status(404).send(error.message);
+    return res.status(404).json({ message: error.message });
   }
 };
