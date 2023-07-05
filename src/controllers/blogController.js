@@ -44,7 +44,8 @@ exports.updateBlog = async (req, res) => {
 exports.deleteBlog = async (req, res) => {
   const { id } = req.params;
   try {
-    await Blog.findOneAndRemove({ _id: id });
+    const isRemovedCorrect = await Blog.findOneAndRemove({ _id: id });
+    if (!isRemovedCorrect) throw new Error('the blog does not exist');
 
     return res
       .status(200)
