@@ -3,11 +3,15 @@ const cors = require('cors');
 const morgan = require('morgan');
 
 const bodyParser = require('body-parser');
-const userRouter = require('./routes/userRoutes');
-const blogRouter = require('./routes/blogRoutes');
-const typeRouter = require('./routes/typeRoutes');
-const commentRouter = require('./routes/commentRoutes');
-const registerRouter = require('./routes/registerRoutes');
+
+const {
+  blogRouter,
+  commentRouter,
+  productRouter,
+  registerRouter,
+  typeRouter,
+  userRouter,
+} = require('./routes/index.js');
 
 const app = express();
 app.use(
@@ -26,6 +30,7 @@ app.use('/blogs', blogRouter);
 app.use('/types', typeRouter);
 app.use('/comments', commentRouter);
 app.use('/register', registerRouter);
+app.use('/products', productRouter);
 
 require('./db');
 module.exports = app;
