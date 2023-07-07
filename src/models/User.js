@@ -34,6 +34,7 @@ firstname: {
   },
   username: {
     type: String,
+    
     unique: true,
     required:true
   },
