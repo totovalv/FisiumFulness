@@ -5,12 +5,12 @@ const userRouter = require('./routes/userRoutes');
 const blogRouter = require('./routes/blogRoutes');
 const typeRouter = require('./routes/typeRoutes');
 const commentRouter = require('./routes/commentRoutes');
-const registerRouter = require('./routes/registerRoutes');
+const loginRouter = require('./routes/loginRoutes');
 
 const app = express();
 app.use(
   cors({
-    origin: '*',
+    origin: 'http://localhost:5173',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204,
@@ -22,7 +22,7 @@ app.use('/users', userRouter);
 app.use('/blogs', blogRouter);
 app.use('/types', typeRouter);
 app.use('/comments', commentRouter);
-app.use('/register', registerRouter);
+app.use('/login', loginRouter);
 
 require('./db');
 module.exports = app;
