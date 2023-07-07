@@ -12,6 +12,8 @@ exports.createUser = async (req, res) => {
     token,
     confirm,
     phone,
+    latitud,
+    longitud,
   } = req.body;
   const newData = {
     email,
@@ -24,6 +26,8 @@ exports.createUser = async (req, res) => {
     token,
     confirm,
     phone,
+    latitud,
+    longitud,
   };
   try {
     const user = new User(newData);
@@ -62,6 +66,8 @@ exports.updateUser = async (req, res) => {
     token,
     confirm,
     phone,
+    latitud,
+    longitud,
   } = req.body;
   const newData = {
     email,
@@ -74,6 +80,8 @@ exports.updateUser = async (req, res) => {
     token,
     confirm,
     phone,
+    latitud,
+    longitud,
   };
   try {
     await User.findByIdAndUpdate({ _id: id }, newData);
