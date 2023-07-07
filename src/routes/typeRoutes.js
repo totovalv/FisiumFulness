@@ -1,12 +1,16 @@
-const { Router } = require("express");
-const typeController = require("../controllers/typeController.js");
+const { Router } = require('express');
+const {
+  createType,
+  getTypes,
+  getTypeById,
+  deleteType
+} = require('../controllers/typeController.js');
 
 const router = Router();
 
-router.post("/", typeController.newType);
-router.get("/", typeController.getTypes);
-router.get("/:id", typeController.getTypeById);
-
-
+router.post('/create', createType);
+router.get('/', getTypes);
+router.get('/:id', getTypeById);
+router.delete('/delete/:id', deleteType);
 
 module.exports = router;

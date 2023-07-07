@@ -1,5 +1,7 @@
 const express = require('express');
 const cors = require('cors');
+const morgan = require('morgan');
+
 const bodyParser = require('body-parser');
 const userRouter = require('./routes/userRoutes');
 const blogRouter = require('./routes/blogRoutes');
@@ -17,6 +19,7 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+app.use(morgan('dev'));
 
 app.use('/users', userRouter);
 app.use('/blogs', blogRouter);
