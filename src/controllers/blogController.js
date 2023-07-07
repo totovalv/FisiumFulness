@@ -34,8 +34,8 @@ exports.updateBlog = async (req, res) => {
   const { text, title, image, user_id, status, type_id } = req.body;
   const newData = { text, title, image, user_id, status, type_id };
   try {
-    // * id =? _id LLega "id" por body o llega _id
-    await Blog.findByIdAndUpdate({ _id: id }, newData);
+    const condition = await Blog.findByIdAndUpdate({ _id: id }, newData);
+    if (!condition) throw new Error('blog not found');
     return res.status(200).json({ message: 'Blog has been updated' });
   } catch (error) {
     return res.status(400).json({ message: error.message });
