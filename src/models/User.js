@@ -55,6 +55,14 @@ firstname: {
     type:String,
     default: ""
   },
+  latitud: {
+    type: Number,
+    default: 0
+  },
+  longitud: {
+    type: Number,
+    default: 0
+  }
 
 },{ timestamps: { createdAt: 'createdDate', updatedAt: 'updatedDate' } });
 

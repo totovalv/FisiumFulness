@@ -12,7 +12,8 @@ const loginRouter = require('./routes/loginRoutes');
 const app = express();
 app.use(
   cors({
-    origin: 'http://localhost:5173',
+    // origin: 'http://localhost:5173',
+    origin: '*',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     preflightContinue: false,
     optionsSuccessStatus: 204,
